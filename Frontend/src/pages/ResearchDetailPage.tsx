@@ -62,6 +62,13 @@ const ResearchDetailPage = () => {
     setPinLoading(false);
   };
 
+  const handlePinBack = () => {
+    setPinModalOpen(false);
+    setPinError("");
+    setPinLoading(false);
+    navigate(-1);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("auth_token");
     setIsLoggedIn(false);
@@ -137,7 +144,13 @@ const ResearchDetailPage = () => {
     return (
       <div className="min-h-screen bg-[#f6f7f8] dark:bg-[#101922] text-slate-900 dark:text-white">
         <div className="min-h-screen" />
-        <PinModal isOpen={pinModalOpen} onSubmit={handlePinSubmit} errorMessage={pinError} isLoading={pinLoading} />
+        <PinModal
+          isOpen={pinModalOpen}
+          onSubmit={handlePinSubmit}
+          onBack={handlePinBack}
+          errorMessage={pinError}
+          isLoading={pinLoading}
+        />
       </div>
     );
   }
@@ -357,7 +370,13 @@ const ResearchDetailPage = () => {
         </a>
       </div>
 
-      <PinModal isOpen={pinModalOpen} onSubmit={handlePinSubmit} errorMessage={pinError} isLoading={pinLoading} />
+      <PinModal
+        isOpen={pinModalOpen}
+        onSubmit={handlePinSubmit}
+        onBack={handlePinBack}
+        errorMessage={pinError}
+        isLoading={pinLoading}
+      />
     </div>
   );
 };

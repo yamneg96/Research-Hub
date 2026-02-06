@@ -3,11 +3,12 @@ import { useState } from "react";
 type PinModalProps = {
   isOpen: boolean;
   onSubmit: (pin: string) => void;
+  onBack?: () => void;
   errorMessage?: string;
   isLoading?: boolean;
 };
 
-const PinModal = ({ isOpen, onSubmit, errorMessage, isLoading }: PinModalProps) => {
+const PinModal = ({ isOpen, onSubmit, onBack, errorMessage, isLoading }: PinModalProps) => {
   const [pin, setPin] = useState("");
 
   if (!isOpen) return null;
@@ -23,6 +24,21 @@ const PinModal = ({ isOpen, onSubmit, errorMessage, isLoading }: PinModalProps) 
       <div className="relative w-full max-w-[420px] transform overflow-hidden rounded-2xl bg-white dark:bg-[#15202b] border border-slate-200 dark:border-[#2a3e50] p-8 text-left shadow-2xl transition-all sm:w-full">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#137fec] to-transparent opacity-70"></div>
         <div className="flex flex-col items-center justify-center gap-6">
+          {onBack ? (
+            <div className="w-full flex items-center justify-start">
+              <button
+                type="button"
+                onClick={() => {
+                  setPin("");
+                  onBack();
+                }}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+              >
+                <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                Back
+              </button>
+            </div>
+          ) : null}
           <div className="flex size-16 items-center justify-center rounded-full bg-[#137fec]/10 dark:bg-[#137fec]/20 ring-1 ring-[#137fec]/30">
             <span className="material-symbols-outlined text-[32px] text-[#137fec]">lock</span>
           </div>
