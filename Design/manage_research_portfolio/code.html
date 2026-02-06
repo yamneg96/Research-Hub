@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Research Portfolio - Research Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1a2632",
+                        "border-dark": "#233648",
+                        "text-secondary": "#92adc9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<div class="flex flex-col min-h-screen w-full">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid dark:border-border-dark border-slate-200 bg-white dark:bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 dark:text-white text-slate-900">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"></path>
+</svg>
+</div>
+<h2 class="dark:text-white text-slate-900 text-lg font-bold leading-tight tracking-[-0.015em]">Research Hub</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden md:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 dark:text-text-secondary flex border border-slate-200 dark:border-none bg-slate-50 dark:bg-border-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border border-slate-200 dark:border-none bg-slate-50 dark:bg-border-dark focus:border-slate-300 h-full placeholder:text-slate-400 dark:placeholder:text-text-secondary px-4 border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search research..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-white text-sm font-medium leading-normal" href="#">My Portfolio</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Analytics</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-border-dark text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-border-dark text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 sm:px-10 py-8 flex justify-center">
+<div class="flex flex-col max-w-[1200px] flex-1 w-full gap-8">
+<!-- Page Title & Actions -->
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm text-text-secondary">
+<span>Home</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary dark:text-white font-medium">Portfolio</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Manage Research Portfolio</h1>
+<p class="text-slate-500 dark:text-text-secondary text-base font-normal leading-normal max-w-2xl">Oversee and update your published research documents. Manage visibility and track performance from a centralized hub.</p>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-primary hover:bg-blue-600 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors shadow-lg shadow-blue-500/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="whitespace-nowrap">Add New Research</span>
+</button>
+</div>
+<!-- Filters & Toolbar -->
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark shadow-sm">
+<div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<button class="px-4 py-2 rounded-lg bg-primary/10 text-primary font-medium text-sm whitespace-nowrap">All Documents</button>
+<button class="px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-border-dark text-slate-600 dark:text-text-secondary font-medium text-sm whitespace-nowrap transition-colors">Published</button>
+<button class="px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-border-dark text-slate-600 dark:text-text-secondary font-medium text-sm whitespace-nowrap transition-colors">Drafts</button>
+<button class="px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-border-dark text-slate-600 dark:text-text-secondary font-medium text-sm whitespace-nowrap transition-colors">Archived</button>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<div class="relative flex-1 md:flex-none">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">filter_list</span>
+<select class="pl-9 pr-8 py-2 w-full md:w-40 bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-border-dark rounded-lg text-sm text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50">
+<option>Sort by Date</option>
+<option>Sort by Name</option>
+<option>Sort by Views</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="@container w-full">
+<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px]">
+<thead>
+<tr class="bg-slate-50 dark:bg-[#192633] border-b border-slate-200 dark:border-border-dark">
+<th class="px-6 py-4 text-left text-slate-900 dark:text-white text-xs font-semibold uppercase tracking-wider w-[35%]">Title</th>
+<th class="px-6 py-4 text-left text-slate-900 dark:text-white text-xs font-semibold uppercase tracking-wider w-[15%]">Date Created</th>
+<th class="px-6 py-4 text-left text-slate-900 dark:text-white text-xs font-semibold uppercase tracking-wider w-[15%]">Category</th>
+<th class="px-6 py-4 text-left text-slate-900 dark:text-white text-xs font-semibold uppercase tracking-wider w-[15%]">Visibility</th>
+<th class="px-6 py-4 text-right text-slate-900 dark:text-white text-xs font-semibold uppercase tracking-wider w-[20%]">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-border-dark">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Quantum Computing Advances 2024</p>
+<p class="text-slate-500 dark:text-text-secondary text-xs mt-0.5">ID: #RC-2024-001</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-slate-600 dark:text-slate-300 text-sm">Oct 12, 2023</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                                                Technology
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500"></span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">Public</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400 shrink-0">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-medium leading-normal">AI Ethics in Healthcare</p>
+<p class="text-slate-500 dark:text-text-secondary text-xs mt-0.5">ID: #RC-2023-892</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-slate-600 dark:text-slate-300 text-sm">Sep 28, 2023</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300">
+                                                Healthcare
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-amber-500"></span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">PIN Protected</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Sustainable Urban Planning</p>
+<p class="text-slate-500 dark:text-text-secondary text-xs mt-0.5">ID: #RC-2023-745</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-slate-600 dark:text-slate-300 text-sm">Sep 15, 2023</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                                                Environment
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500"></span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">Public</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+<span class="material-symbols-outlined">attach_money</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Blockchain for Supply Chain</p>
+<p class="text-slate-500 dark:text-text-secondary text-xs mt-0.5">ID: #RC-2023-611</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-slate-600 dark:text-slate-300 text-sm">Aug 30, 2023</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">
+                                                Finance
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-amber-500"></span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">PIN Protected</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-background-dark transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Renewable Energy Trends</p>
+<p class="text-slate-500 dark:text-text-secondary text-xs mt-0.5">ID: #RC-2023-559</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-slate-600 dark:text-slate-300 text-sm">Aug 10, 2023</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300">
+                                                Energy
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500"></span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">Public</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between p-4 border-t border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark/50">
+<div class="text-sm text-slate-500 dark:text-text-secondary">
+                                Showing <span class="font-semibold text-slate-900 dark:text-white">1-5</span> of <span class="font-semibold text-slate-900 dark:text-white">48</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-8 items-center justify-center rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-border-dark text-slate-600 dark:text-slate-300 transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="flex size-8 items-center justify-center rounded-lg bg-primary text-white text-sm font-medium">1</button>
+<button class="flex size-8 items-center justify-center rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-border-dark text-slate-600 dark:text-slate-300 transition-colors text-sm">2</button>
+<button class="flex size-8 items-center justify-center rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-border-dark text-slate-600 dark:text-slate-300 transition-colors text-sm">3</button>
+<span class="text-slate-400">...</span>
+<button class="flex size-8 items-center justify-center rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-border-dark text-slate-600 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

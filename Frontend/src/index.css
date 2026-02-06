@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #233648 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #233648;
+  border-radius: 20px;
+}
+
+.prose-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.75;
+}
+
+.prose-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Research Hub Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-[#233648] bg-white/90 dark:bg-[#111a22]/90 backdrop-blur-md">
+<div class="px-6 md:px-10 py-3 mx-auto max-w-[1440px] flex items-center justify-between gap-4">
+<!-- Logo & Nav Links -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary dark:text-white">
+<span class="material-symbols-outlined text-3xl">science</span>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight hidden md:block">Research Hub</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-900 dark:text-white text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">My Library</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Shared</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<!-- Search, Theme Toggle, Profile -->
+<div class="flex items-center justify-end gap-4 flex-1 md:flex-initial">
+<!-- Search Bar -->
+<div class="hidden md:flex items-center w-full max-w-[320px] h-10 rounded-lg bg-slate-100 dark:bg-[#233648] overflow-hidden focus-within:ring-2 focus-within:ring-primary/50 transition-shadow">
+<div class="pl-3 pr-2 text-slate-400 dark:text-[#92adc9] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#92adc9] focus:ring-0 h-full py-0" placeholder="Search papers, authors..."/>
+</div>
+<!-- Theme Toggle -->
+<button class="flex items-center justify-center size-10 rounded-lg text-slate-600 dark:text-white hover:bg-slate-100 dark:hover:bg-[#233648] transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">light_mode</span>
+</button>
+<!-- Profile -->
+<div class="relative cursor-pointer group">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZn--yAt39Ha7qPR7KaHjjJjTKMQUwQaITSgzobVl31BXVGzXibNL3l_RLrQCtiFW5LUaoEKSghPLykD4aaV8LKa49pC_ZWY2xjq_6rjyx1qntwEFD2Ro2n9EEbUl0myqBLdhvsWPLke_IPsvodHcu31a_U3VGctOv7SXMRah1IwYx6jhF0sYyrFGOOoQ5aQ1TELhS7kbiL_OAxDy9cUNUDPf_jJAjBYOa2BvKNW3ZP1iM8paYmhidaRWSciy4igaIzid7VeoEhK63");'></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-6 md:px-10 py-8">
+<!-- Page Header & Filters -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-2">Dashboard</h1>
+<p class="text-slate-500 dark:text-[#92adc9] text-base font-normal">Explore the latest research papers and scientific breakthroughs.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                        Filters
+                     </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                        Sort
+                     </button>
+</div>
+</div>
+<!-- Category Chips -->
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-primary text-white text-sm font-medium shadow-md shadow-primary/20 transition-transform hover:scale-105">
+                    All
+                </button>
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-white dark:bg-[#233648] border border-slate-200 dark:border-transparent text-slate-600 dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-[#2c445a] transition-colors">
+                    Artificial Intelligence
+                </button>
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-white dark:bg-[#233648] border border-slate-200 dark:border-transparent text-slate-600 dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-[#2c445a] transition-colors">
+                    Quantum Physics
+                </button>
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-white dark:bg-[#233648] border border-slate-200 dark:border-transparent text-slate-600 dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-[#2c445a] transition-colors">
+                    Biotechnology
+                </button>
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-white dark:bg-[#233648] border border-slate-200 dark:border-transparent text-slate-600 dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-[#2c445a] transition-colors">
+                    Sustainability
+                </button>
+<button class="flex-shrink-0 h-9 px-5 rounded-full bg-white dark:bg-[#233648] border border-slate-200 dark:border-transparent text-slate-600 dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-[#2c445a] transition-colors">
+                    Astrophysics
+                </button>
+</div>
+</div>
+<!-- Research Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract neural network concept visualization" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmAoS2Y7-0bE3I4hNPcjf9tRPqXDD6hYOmIq0mCPJxTPYZFNiV2yNmkScKhMo5mzRvZKuF5pBVl4kFDaqMFIRFhHhJm7JfpfXdm7f7LGsIvZawyJxhqFq6CiJzAiW-Wc7UzYsD50IZCz1EYgODHvLoT6oarSGv-inBqx21JqOcc2HVNL6-RpoYORVNVumTv1UyQIZFAb3LAfDKinnGZtqsl1b5VTxosjoIZ7WfsLpsaef4Q6INZlSKDwGQNDfqL4AWJS_ZgXkScE3G");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-primary tracking-wide shadow-sm">
+                            AI
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 24, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">5 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        Advances in Neural Networks and Deep Learning
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        A deep dive into the latest architectures and training methodologies for large language models, exploring efficiency gains.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9s14k0oT9xnTOD_fZorCJOGHt6HGsdqOuh4ETrVy323kRwqhOu9iUJ2ikXgeIYNTCJnbLFVqR2PSkEE_mF2tPaAlQpcl0Ft-9WvP5D-YXTa6ORcSmi7NlEmTj9Et-7ZOWYooicN3zLWkGeZpKdwaad2E9n0F45CcXwBf0gHfD-bdVeMgUHiZx57dqAi4rzB6WH5nRyVqcRlBM4FWKQfp2oZSRTyStgC0LfxLzFz5BIjLloXM_oOljIG4pCdQOWRooECpv9exvpjMG");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Dr. Sarah Chen</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Quantum computing processor abstract visualization" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDa9CeeBJbAXECuYBq1Y12e4fKGJyPGiSf_jXG01WvDs8Z3qO9H2DGiPpr2EDd0PJU06cxCWIFn0e5PPblYwTiFspyLxKJfu_qtyzy-7xaT8AWlPnuafUVVwKdeI12kJ61JpGC7kZdx7f64YQoUoqrLxq6ppyw2cQ1iyGp3Vg2DTNkZtjZzPgasnlFYVcon8boEu5Q_BBFcGXxFiZeAbVZkseXYgflEkGnbXA8Mx-PqqZFzWIKfAs2sAxaixCMV3NtA_ctST5Y_qDiR");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-purple-500 tracking-wide shadow-sm">
+                            Quantum Physics
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 22, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">12 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        Quantum Computing: Breaking the Qubit Barrier
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        Exploring recent breakthroughs in qubit stability and error correction that pave the way for commercial quantum computers.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBi51TBUjwYIMYA_u8IVMpv3XvLICIh2hKXGGV1QidPqPUjVHgffQjNx4K8OWZw2mF81BIH5X1h9x1GIGidGR5fmifPYGx2fKtyoao3rY1smgF5ceK0OAHLGOB15ag_VPFFpBPjfDYQINjnmwU9e2033THVVzdvexlBdOO2wB9TV5WHDnc1QHy4d09ie2GewYaiucU13UYD_IJMsAGbDYkY9MK4WlTOiTUYqxEnCx3U5o-LXn7v_WFo4pwf6IlIwEVdo4n2-Ioo5Cvx");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Mark Reynolds</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="DNA double helix structure visualization" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLm4IBTFuaKbnbRGdsK3jEZNBle9xIJFlpVRDhoWHQJjAIZnhcBUr147g-BCQ-UocAaPfM5XRTN3V0yJ1VHiuB-CvIdZCIWP2leRFkway8WCMrjs5ix8WMQhxBbzXaPzs6POG2vBWcrCcv9t5DKKrAgHrw5Ztl5CVgiF9uSXPBIgjcy6azN4SU6pFd8oM2B3JG7ufcJPvxG6Pd4Fq__R9wXgEdEMqrKnQOF5j6X5ShybMxdzG6jsyGfMzDx36VyU0qLNLFglYq0IBa");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-green-500 tracking-wide shadow-sm">
+                            Biotech
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 20, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">8 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        CRISPR: The Next Generation of Gene Editing
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        Analyzing the ethical implications and medical potential of precision gene editing tools in modern medicine.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAETO7ogkdKuAvv9aHf7zuIsdot112CPc4iOfP5yKknO9hBEhERlPN5gcbrqKIa0YbNN0t1tLBOdUgLtmu1DS67vlHW62R6pRRUGwsUE4e4eWUu46LWe9zszKFVq6LB8NIABQbn5x7qOjTkVKJID9e3f4FiD5Hoev2Z0ISCDyOX1fkmern14GTxUoR0YinN9sNOf52jdmxjBoZAMVzSLJ1IHGGKCWAOD_x_ilnsYwOQaUM0_w9sTFISG6OL9RSf2NignrWBrJRy4j6j");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Dr. Elena Rodriguez</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Solar panels reflecting sunlight" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_J6Vwbh1gwU5oGiaGrX_MMWjxUWEg31tRJm-chhBs-4IXyUrgSy9HknydESOJIDXHcMobP5ZSDGEEsvrHGq-qZP8weDIjSTJ5Ma-uz8ft0Caj3atrP0aQkTzwyoZh1Vo_NQ2wonoPrjPtlYBz0jsifBPt4wuzo3WHGmfC47KAP1VfnkpO1Vn1ke5tsCETZVmPXg8zwGoxc_moW0v7gTN2zabhc0vzsg9w5796T9WpTVyX2AVVvj0yV_MwZzaxUTbMU_OA1IzWXsjw");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-emerald-600 tracking-wide shadow-sm">
+                            Sustainability
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 18, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">6 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        Sustainable Energy Storage Solutions
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        A review of solid-state battery technologies and their potential to revolutionize grid storage capabilities.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDaWqtHLU4M760xtlvqwjPs7-jdZT53VfvJ2hXpUpg20pqEm6OUqu3b12Ikk6i_F7ud9T619rMBpcbUwQKCPDpbYN34VUkqRju4XgTVvW5cTQJqU3aWzqh8Eku5Lp68Kulx780bCR7fiPqGyZVWbld-02aAjoQTwAOSSTlia4n-a0xR51SieRwzjSqHbeNf-H6qW6VsFLHpXdlUKdCL7ZBBMGDnzxn8DiAKP5HnQB2HENijkprFEigfgGgiEuDoLfxvhdLx-W_NReey");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">David Kim</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Futuristic software interface code" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAB9lPmP-9vbrKPw8jG7UECSHBP9ou16pvwkHVFCb87Wgvxm8F07tEX51-XLPfKnVVU6eqQF75YOgVv2OLEypRSme7fAOh-lKhARmm90ylgc6ZzaM7Q68PNi8IPFo4XcjVBe7u4gCfjdZln1GZ2A4WCXkWSHSK8QYFMP9UtP_hgspneEaABKj62y5Vep-cssxG7_11YqTq5BRjqZ8Pa-ftlFVZwKg71dsg2I2hmSx3EM7gfxDgIABknKxFdAcghONhpHi1N4RfwTVTj");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-primary tracking-wide shadow-sm">
+                            AI
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 15, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">15 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        Generative Adversarial Networks: A 2023 Survey
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        Comparing stability, mode collapse, and sample quality across leading GAN architectures in image synthesis.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRch8XFDwDJap7y7mONmbiWWE0pXLsp1E3UG0Gqo6DRJrclGZ1Qy41vQ8p6qd6Agf_t-4gi52zUFd8yPnS33zc8gqQm4fS6iDtojM119BY1oIFQn4M2fvYQ2ljznZJBxGCS6CoUbQL91rJ30Iw9RuFYSIDXh83yuQdYkzSKkq5WHoHPuT0333SiWRHQeiQUUmiZesR_fBQ0R-VNEHwv7rS5p6fSuv_fAfO19154VMGw2eo35dqIU6i9_b42uv33dnBctddJ6MQya_A");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Dr. Emily Zhang</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="group relative flex flex-col bg-white dark:bg-[#192633] rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="View of planet earth from space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUujCoPQna-DAiYWFJklBETzrOtXXwLA7tJHV176dOG4V-lI8YCAvFFAx6yuLDAuZ6q0LPpjcBfgAlw5Np5rzspuT1-Nh0KpHpyFMksBElI9s4s1EAj_vTdESfaz5Itv5NMVe8OHthLdiLmR4UI3b-O2xwTpgxLNdRQXr9ppGkZl1EUDn1Ef8r-DcG-UZHbOcCtd4l0DfWa53N9MXO99xOmX3FitoNSAO4C25FsSnVdsukJojYEFqMqFQiOQFEVaXOQLeQtH6wBdL2");'></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 dark:bg-black/60 backdrop-blur-sm text-xs font-bold text-orange-500 tracking-wide shadow-sm">
+                            Astrophysics
+                        </span>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-5">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">Oct 12, 2023</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-xs font-medium text-slate-400 dark:text-[#92adc9]">20 min read</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-primary transition-colors">
+                        Dark Matter Distribution in Early Galaxies
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                        Using data from the James Webb Space Telescope to map the influence of dark matter on early star formation.
+                    </p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover" data-alt="Author portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPfDrU0AJ658qwlkkmvaqsl63EVMXLUXmYd6CuRdHW7L9x-k9LMmjYbBPjNrKqJYhbhCpD0T_-XttcnPMa9uTXy-FpUxroOhIee3pPb-eH9ejU5ZuIzZjC5pXzw81W6lQcjMvq3kO1nhidhwCuOrlxf4DovtLZ2RQZcRhOAnju35ZpgZNhKPK8vubgjscDLDNvTAsJrqNkQ3GD-WgM5U3yEuRZRRjqiiWiPtqYW7NkRyZ0Ow9tIvt_-2db4l1ZwyVnq2PDSLCxbgkc");'></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Dr. Raj Patel</span>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+</body></html>
