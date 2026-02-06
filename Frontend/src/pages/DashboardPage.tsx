@@ -15,6 +15,10 @@ const DashboardPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [visibilityFilter, setVisibilityFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() => Boolean(localStorage.getItem("auth_token")));
   const navigate = useNavigate();
 
@@ -39,6 +43,30 @@ const DashboardPage = () => {
     const unique = new Set(documents.map((doc) => doc.category).filter(Boolean));
     return ["All", ...Array.from(unique)];
   }, [documents]);
+
+  const filteredDocuments = useMemo(() => {
+    if (visibilityFilter === "public") {
+      return documents.filter((doc) => !doc.pin);
+    }
+    if (visibilityFilter === "protected") {
+      return documents.filter((doc) => doc.pin);
+    }
+    return documents;
+  }, [documents, visibilityFilter]);
+
+  const sortedDocuments = useMemo(() => {
+    const sorted = [...filteredDocuments];
+    if (sortBy === "title") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+      return sorted;
+    }
+    if (sortBy === "oldest") {
+      sorted.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
+      return sorted;
+    }
+    sorted.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+    return sorted;
+  }, [filteredDocuments, sortBy]);
 
   const handleLogout = () => {
     localStorage.removeItem("auth_token");
@@ -146,14 +174,114 @@ const DashboardPage = () => {
               <p className="text-slate-500 dark:text-[#92adc9] text-base font-normal">Explore the newest additions to the Research Hub.</p>
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors">
+              <div className="relative">
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors"
+                  type="button"
+                  aria-expanded={filtersOpen}
+                  onClick={() => {
+                    setFiltersOpen((prev) => !prev);
+                    setSortOpen(false);
+                  }}
+                >
                 <span className="material-symbols-outlined text-[18px]">tune</span>
                 Filters
-              </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors">
+                </button>
+                {filtersOpen ? (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 dark:border-[#2a3e50] bg-white dark:bg-[#101922] shadow-xl p-3 z-20">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">Visibility</p>
+                    <div className="mt-2 flex flex-col gap-1">
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${visibilityFilter === "all" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setVisibilityFilter("all");
+                          setFiltersOpen(false);
+                        }}
+                      >
+                        All research
+                        {visibilityFilter === "all" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${visibilityFilter === "public" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setVisibilityFilter("public");
+                          setFiltersOpen(false);
+                        }}
+                      >
+                        Public only
+                        {visibilityFilter === "public" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${visibilityFilter === "protected" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setVisibilityFilter("protected");
+                          setFiltersOpen(false);
+                        }}
+                      >
+                        PIN protected
+                        {visibilityFilter === "protected" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              <div className="relative">
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#233648] rounded-lg text-slate-700 dark:text-white text-sm font-medium hover:bg-slate-200 dark:hover:bg-[#2c445a] transition-colors"
+                  type="button"
+                  aria-expanded={sortOpen}
+                  onClick={() => {
+                    setSortOpen((prev) => !prev);
+                    setFiltersOpen(false);
+                  }}
+                >
                 <span className="material-symbols-outlined text-[18px]">sort</span>
                 Sort
-              </button>
+                </button>
+                {sortOpen ? (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 dark:border-[#2a3e50] bg-white dark:bg-[#101922] shadow-xl p-3 z-20">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">Order</p>
+                    <div className="mt-2 flex flex-col gap-1">
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${sortBy === "newest" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setSortBy("newest");
+                          setSortOpen(false);
+                        }}
+                      >
+                        Newest first
+                        {sortBy === "newest" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${sortBy === "oldest" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setSortBy("oldest");
+                          setSortOpen(false);
+                        }}
+                      >
+                        Oldest first
+                        {sortBy === "oldest" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${sortBy === "title" ? "bg-[#137fec]/10 text-[#137fec]" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1a2632]"}`}
+                        onClick={() => {
+                          setSortBy("title");
+                          setSortOpen(false);
+                        }}
+                      >
+                        Title A-Z
+                        {sortBy === "title" ? <span className="material-symbols-outlined text-[18px]">check</span> : null}
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-2">
@@ -179,7 +307,7 @@ const DashboardPage = () => {
           <div className="text-center py-16 text-red-500">{error}</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {documents.map((doc) => (
+            {sortedDocuments.map((doc) => (
               <Link
                 key={doc._id}
                 to={`/research/${doc._id}`}
