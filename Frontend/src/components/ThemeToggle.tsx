@@ -8,16 +8,16 @@ const ThemeToggle = () => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const shouldUseDark = stored ? stored === "dark" : prefersDark;
     setIsDark(shouldUseDark);
-    document.documentElement.classList.toggle("dark", shouldUseDark);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
   const handleToggle = () => {
-    setIsDark((prev) => {
-      const next = !prev;
-      document.documentElement.classList.toggle("dark", next);
-      localStorage.setItem("theme", next ? "dark" : "light");
-      return next;
-    });
+    setIsDark((prev) => !prev);
   };
 
   return (

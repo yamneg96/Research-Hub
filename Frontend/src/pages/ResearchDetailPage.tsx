@@ -133,7 +133,14 @@ const ResearchDetailPage = () => {
     return <div className="min-h-screen flex items-center justify-center text-red-500">{errorMessage}</div>;
   }
 
-  if (!document) return null;
+  if (!document) {
+    return (
+      <div className="min-h-screen bg-[#f6f7f8] dark:bg-[#101922] text-slate-900 dark:text-white">
+        <div className="min-h-screen" />
+        <PinModal isOpen={pinModalOpen} onSubmit={handlePinSubmit} errorMessage={pinError} isLoading={pinLoading} />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#f6f7f8] dark:bg-[#101922] font-[Inter] text-slate-900 dark:text-white antialiased min-h-screen flex flex-col">
